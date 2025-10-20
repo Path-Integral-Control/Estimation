@@ -58,20 +58,19 @@ Trajectory files are CSV format with 17 columns:
 time, px, py, pz, u, v, w, qw, qx, qy, qz, omega_x, omega_y, omega_z, throttle, elevator, rudder
 ```
 
-**Data Source:** Trajectories are generated externally using the [auav_pylon_2025](https://github.com/CogniPilot/auav_pylon_2025) simulation environment.
+**Data Source:** Trajectories are generated externally using the [auav_pylon_2025](https://github.com/wsribunma/auav_pylon_2025) simulation environment.
 
-**Measurement Model:** The estimators use 10 simulated sensor measurements:
-- GPS position (3): px, py, pz
-- Doppler velocity (3): u, v, w (body frame, noisy)
-- IMU gyroscope (3): omega_x, omega_y, omega_z
-- Pitot tube (1): airspeed magnitude
+**Measurement Model:** The estimators use mixed-rate sensor measurements:
+- **100 Hz (high-rate):** IMU gyroscope (omega_x, omega_y, omega_z) + Pitot airspeed
+- **10 Hz (low-rate):** GPS position (px, py, pz) + GPS Doppler velocity (u, v, w)
 
 ## Usage
 
-1. Place trajectory CSV in `data/` folder
-2. Open `estimation_outline.ipynb` and follow instructions
-3. Complete the marked sections (`# YOUR CODE HERE`)
-4. Run all cells to generate comparison results
+1. Run `dynamics.ipynb` to load the aircraft dynamics model (makes functions available)
+2. Place trajectory CSV files in `data/` folder (or use provided simulation data)
+3. Open `estimation_outline.ipynb` and follow instructions
+4. Complete the marked sections (`# YOUR CODE HERE`)
+5. Run all cells to generate comparison results
 
 ## Assignment Tasks
 
